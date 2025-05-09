@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>YouTube Style GPS Page</title>
+</head>
+<body>
+  <h2>YouTube वीडियो देखें</h2>
+  
+  <!-- यूट्यूब वीडियो EMBED -->
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+    title="YouTube video" frameborder="0" allowfullscreen></iframe>
+
+  <br><br>
+
+  <!-- लोकेशन बटन -->
+  <button onclick="getLocation()">लोकेशन Allow करें</button>
+
+  <p id="location"></p>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        document.getElementById("location").innerHTML = "Geolocation supported नहीं है।";
+      }
+    }
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
+      document.getElementById("location").innerHTML = "Latitude: " + lat + "<br>Longitude: " + lon;
+
+      // तुम्हें चाहो तो यहाँ से data किसी Google Sheet या backend server पर भेज सकते हो
+    }
+
+    function showError(error) {
+      alert("Location access नहीं मिली या user ने मना कर दिया।");
+    }
+  </script>
+</body>
+</html>
